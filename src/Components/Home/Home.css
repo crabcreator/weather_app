@@ -1,0 +1,57 @@
+main {
+  display: flex;
+  align-content: flex-start;
+}
+
+#map {
+  height: 88vh;
+  width: 100%;
+}
+#map > div > div {
+  height: 88vh;
+  cursor: default;
+}
+.polygon {
+  cursor: default;
+}
+.div-icon {
+  font-family: 'Raleway', sans-serif;
+  background-color: #000;
+  font-size: 13px;
+  font-weight: 600;
+  color: #000;
+  background-color: #fafafa;
+  transition: 300ms;
+}
+.div-icon:hover {
+  color: #007cef;
+}
+.popup-body {
+  display: flex;
+  font-size: 15px;
+  color: #000;
+  font-weight: 500;
+  flex-direction: column;
+  width: fit-content;
+}
+.popup-body span {
+  flex-direction: row;
+  margin-bottom: 10px;
+}
+.popup-body span:last-child {
+  margin: 0;
+}
+.apparent {
+  color: #878787;
+}
+.leaflet-popup-close-button span {
+  font-size: 20px;
+}
+.detailed {
+  color: #007cef !important;
+  font-weight: 600;
+  text-decoration: none;
+}
+.leaflet-container {
+  z-index: 0 !important;
+}
