@@ -1,0 +1,127 @@
+.not-found {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: red;
+  margin: 20px 0 20px 20px;
+}
+.return {
+  color: black;
+  font-weight: 500;
+  margin: 20px 0 0 20px;
+}
+.main-info {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 24px auto;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(112, 198, 255, 1) 0%,
+    rgba(102, 191, 255, 0.5144258386948529) 100%
+  );
+  color: #fcfbf8;
+  padding: 18px;
+  user-select: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 25%);
+}
+.middle {
+  display: flex;
+  flex-direction: row;
+}
+.top {
+  font-size: 20px;
+  font-weight: 600;
+}
+.left-info-container {
+  display: flex;
+  flex-direction: column;
+}
+.left-info {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  margin: auto 0;
+}
+.today-date {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.current-t {
+  display: flex;
+}
+.current-t span {
+  display: flex;
+  font-size: 60px;
+  font-weight: 500;
+  margin-right: 12px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 25%);
+}
+.current-t img {
+  display: flex;
+  width: 78px;
+  justify-self: center;
+}
+.apparent-t {
+  margin-top: 12px;
+  display: flex;
+  color: #f0f0f0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.right-info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.period {
+  display: flex;
+  flex-direction: column;
+  margin-right: 32px;
+}
+.period:last-child {
+  margin-right: 18px;
+}
+.period-name {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  align-self: center;
+}
+.period-t {
+  display: flex;
+  align-self: center;
+  font-weight: 500;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.period img {
+  display: flex;
+  align-self: center;
+  width: 50px;
+  margin-bottom: 8px;
+}
+.apparent-feel {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  align-self: center;
+}
+
+.separate-line {
+  display: flex;
+  justify-self: center;
+  width: 1.6px;
+  height: 50px;
+  background-color: #fafafa;
+  margin: auto 52px;
+}
+
+.bottom {
+  font-size: 16px;
+  font-weight: 600;
+}
