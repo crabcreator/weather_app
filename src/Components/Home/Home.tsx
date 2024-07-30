@@ -1,4 +1,5 @@
 import './Home.css';
+import 'leaflet/dist/leaflet.css';
 import { MapContainer, TileLayer, Polygon, Marker, Popup } from 'react-leaflet';
 import { UkraineData } from './data';
 import { latLng, latLngBounds, LeafletMouseEvent, DivIcon } from 'leaflet';
@@ -6,8 +7,8 @@ import { centers } from './centers';
 import PopupBody from './PopupBody';
 
 export default function Home() {
-  let corner1 = latLng(52.79, 21.59),
-    corner2 = latLng(43.88, 40.54),
+  let corner1 = latLng(55, 21.59),
+    corner2 = latLng(42, 40.54),
     bounds = latLngBounds(corner1, corner2);
 
   return (
@@ -15,15 +16,14 @@ export default function Home() {
       <div id='map'>
         <MapContainer
           center={[49.039, 31.45]}
-          zoom={6}
+          zoom={0}
           minZoom={6}
           maxZoom={9}
           maxBounds={bounds}
           doubleClickZoom={false}
           scrollWheelZoom={true}>
           <TileLayer
-            url='
-https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png'
+            url='https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}.png'
           />
           {UkraineData.features.length &&
             UkraineData.features.map((oblast: any) => {

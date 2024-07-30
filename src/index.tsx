@@ -4,9 +4,11 @@ import './index.css';
 import App from './App';
 import Home from './Components/Home/Home';
 import WeatherToday from './Components/Weather/WeatherToday/WeatherToday';
+import { StrictMode } from 'react';
 
 const root = ReactDOM.createRoot(document.getElementById('root')!);
 root.render(
+  <StrictMode>
   <BrowserRouter>
     <Routes>
       <Route path='/' element={<App />}>
@@ -15,4 +17,5 @@ root.render(
       </Route>
     </Routes>
   </BrowserRouter>
+  </StrictMode>
 );

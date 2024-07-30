@@ -4,11 +4,11 @@ main {
 }
 
 #map {
-  height: 88vh;
   width: 100%;
+  z-index: 0;
 }
 #map > div > div {
-  height: 88vh;
+  height: calc(100dvh - 44px);
   cursor: default;
 }
 .polygon {
@@ -51,7 +51,4 @@ main {
   color: #007cef !important;
   font-weight: 600;
   text-decoration: none;
-}
-.leaflet-container {
-  z-index: 0 !important;
 }

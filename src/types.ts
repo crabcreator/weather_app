@@ -39,20 +39,28 @@ export type Data = {
   hourly_units: {
     time: string;
     temperature_2m: string;
+    relative_humidity_2m: string;
     apparent_temperature: string;
+    precipitation_probability: string;
     rain: string;
     showers: string;
     snowfall: string;
     cloudcover: string;
+    wind_speed_10m: string;
+    wind_direction_10m: string;
   };
   hourly: {
     time: Array<string>;
     temperature_2m: Array<number>;
+    relative_humidity_2m: Array<number>;
     apparent_temperature: Array<number>;
+    precipitation_probability: Array<number>;
     rain: Array<number>;
     showers: Array<number>;
     snowfall: Array<number>;
     cloudcover: Array<number>;
+    wind_speed_10m: Array<number>;
+    wind_direction_10m: Array<number>;
   };
   daily_units: {
     time: string;

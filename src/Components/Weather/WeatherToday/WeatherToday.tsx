@@ -1,7 +1,7 @@
 import { Data } from '../../../types';
 import { Link } from 'react-router-dom';
 import DateRange from '../../DateRange/DateRange';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { centers } from '../../Home/centers';
 import './WeatherToday.css';
@@ -10,6 +10,7 @@ import {
   cloudCoverImage,
   measureTemperature,
   calcPrecipitation,
+  windDirectionImage,
 } from '../../../utils';
 
 export default function WeatherToday() {
@@ -27,10 +28,20 @@ export default function WeatherToday() {
 
   const [responseData, setResponseData] = useState<Partial<Data>>();
 
+  const infoRef = useRef<HTMLDivElement>(null);
+  const detailedInfoRef = useRef<HTMLDivElement>(null);
+
+  // if(infoRef.current !== null && detailedInfoRef.current !== null) {
+  //   detailedInfoRef.current. = infoRef.current?.offsetWidth;
+  // }
+
+  console.log(detailedInfoRef.current?.clientWidth);
+  console.log(infoRef.current?.offsetWidth);
+
   useEffect(() => {
     axios
       .get(
-        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,relativehumidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,cloudcover,windspeed_10m,winddirection_10m&hourly=temperature_2m,apparent_temperature,rain,showers,snowfall,cloudcover&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,winddirection_10m_dominant&timezone=Europe%2FKiev&past_days=1&forecast_days=14`
+        `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lng}&current=temperature_2m,relativehumidity_2m,apparent_temperature,is_day,precipitation,rain,showers,snowfall,cloudcover,windspeed_10m,winddirection_10m&hourly=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation_probability,rain,showers,snowfall,cloudcover,wind_speed_10m,wind_direction_10m&daily=temperature_2m_max,temperature_2m_min,sunrise,sunset,uv_index_max,rain_sum,showers_sum,snowfall_sum,precipitation_hours,precipitation_probability_max,windspeed_10m_max,winddirection_10m_dominant&wind_speed_unit=ms&timezone=Europe%2FKiev&past_days=1&forecast_days=14`
       )
       .then((response) => {
         if (response.data !== '') {
@@ -45,14 +56,14 @@ export default function WeatherToday() {
         }
       })
       .catch((error) => console.log(error));
-  }, []);
+  }, [lat, lng]);
 
   if (responseData) {
     return (
       <>
         <DateRange range='0' />
         <main>
-          <div className='main-info'>
+          <div className='main-info' ref={infoRef}>
             <div className='top'>{langName}, погода сьогодні</div>
             <div className='middle'>
               <div className='left-info-container'>
@@ -79,52 +90,52 @@ export default function WeatherToday() {
                 <div className='period'>
                   <span className='period-name'>Ранок</span>
                   <span className='period-t'>
-                    {Math.round(responseData.hourly?.temperature_2m[8]!)}
+                    {Math.round(responseData.hourly?.temperature_2m[32]!)}
                     {responseData.hourly_units?.temperature_2m.charAt(0)}
                   </span>
-                  {cloudCoverImage(responseData.hourly?.cloudcover[8])}
+                  {cloudCoverImage(responseData.hourly?.cloudcover[32])}
                   <span className='apparent-feel'>
                     {measureTemperature(
-                      responseData.hourly?.apparent_temperature[8]!
+                      responseData.hourly?.apparent_temperature[32]!
                     )}
                   </span>
                 </div>
                 <div className='period'>
                   <span className='period-name'>День</span>
                   <span className='period-t'>
-                    {Math.round(responseData.hourly?.temperature_2m[13]!)}
+                    {Math.round(responseData.hourly?.temperature_2m[37]!)}
                     {responseData.hourly_units?.temperature_2m.charAt(0)}
                   </span>
-                  {cloudCoverImage(responseData.hourly?.cloudcover[13])}
+                  {cloudCoverImage(responseData.hourly?.cloudcover[37])}
                   <span className='apparent-feel'>
                     {measureTemperature(
-                      responseData.hourly?.apparent_temperature[13]!
+                      responseData.hourly?.apparent_temperature[37]!
                     )}
                   </span>
                 </div>
                 <div className='period'>
                   <span className='period-name'>Вечір</span>
                   <span className='period-t'>
-                    {Math.round(responseData.hourly?.temperature_2m[18]!)}
+                    {Math.round(responseData.hourly?.temperature_2m[42]!)}
                     {responseData.hourly_units?.temperature_2m.charAt(0)}
                   </span>
-                  {cloudCoverImage(responseData.hourly?.cloudcover[18])}
+                  {cloudCoverImage(responseData.hourly?.cloudcover[42])}
                   <span className='apparent-feel'>
                     {measureTemperature(
-                      responseData.hourly?.apparent_temperature[18]!
+                      responseData.hourly?.apparent_temperature[42]!
                     )}
                   </span>
                 </div>
                 <div className='period'>
                   <span className='period-name'>Ніч</span>
                   <span className='period-t'>
-                    {Math.round(responseData.hourly?.temperature_2m[23]!)}
+                    {Math.round(responseData.hourly?.temperature_2m[47]!)}
                     {responseData.hourly_units?.temperature_2m.charAt(0)}
                   </span>
-                  {cloudCoverImage(responseData.hourly?.cloudcover[23])}
+                  {cloudCoverImage(responseData.hourly?.cloudcover[47])}
                   <span className='apparent-feel'>
                     {measureTemperature(
-                      responseData.hourly?.apparent_temperature[23]!
+                      responseData.hourly?.apparent_temperature[47]!
                     )}
                   </span>
                 </div>
@@ -138,6 +149,144 @@ export default function WeatherToday() {
             </div>
             <div className='bottom'>
               {cloudCoverPercent(responseData?.current?.cloudcover)}
+            </div>
+          </div>
+
+          <div className="detailed-info" ref={detailedInfoRef} style={{width: String(infoRef.current?.offsetWidth! - 36) + 'px'}}>
+            <div className="period-detailed">
+            <span className='period-name-detailed'>Ранок</span>
+                {cloudCoverImage(responseData.hourly?.cloudcover[32])}
+                <span className='period-t-detailed'>
+                  {Math.round(responseData.hourly?.temperature_2m[32]!)}
+                  {responseData.hourly_units?.temperature_2m.charAt(0)}
+                </span>
+                <span className='apparent-t-detailed'>
+                Відчувається як
+                </span>
+                <span className="apparent-t-detailed-b">
+                  {Math.round(responseData.hourly?.apparent_temperature[32]!)}
+                  {responseData.hourly_units?.apparent_temperature.charAt(0)}
+                </span>
+                <div className="other">
+                  <span className="probability-detailed">
+                    <img src="./img/weather/icon-precipitation-probability.png" alt="" />
+                    {responseData.hourly?.precipitation_probability[32]}{responseData.hourly_units?.precipitation_probability}
+                  </span>
+                  <span className="precipitation">
+                  <img src="./img/weather/icon-precipitation.png" alt="" />
+                    {calcPrecipitation(responseData.hourly?.rain[32]!, responseData.hourly?.snowfall[32]!)} 
+                    <small>&nbsp;{responseData.hourly_units?.rain}</small>
+                  </span>
+                  <span className="wind-speed">
+                    {windDirectionImage(responseData.hourly?.wind_direction_10m[32]!)}
+                    {responseData.hourly?.wind_speed_10m[32]} <small>&nbsp;{responseData.hourly_units?.wind_speed_10m}</small></span>
+                  <span className="relative-humidity">
+                    <img src="./img/weather/icon-humidity.png" alt="" />
+                    {responseData.hourly?.relative_humidity_2m[32]} {responseData.hourly_units?.relative_humidity_2m}
+                  </span>
+                </div>
+            </div>
+            
+            <div className="period-detailed">
+              <span className='period-name-detailed'>День</span>
+              {cloudCoverImage(responseData.hourly?.cloudcover[37])}
+              <span className='period-t-detailed'>
+                {Math.round(responseData.hourly?.temperature_2m[37]!)}
+                {responseData.hourly_units?.temperature_2m.charAt(0)}
+              </span>
+              <span className='apparent-t-detailed'>
+                Відчувається як
+              </span>
+              <span className="apparent-t-detailed-b">
+                {Math.round(responseData.hourly?.apparent_temperature[37]!)}
+                {responseData.hourly_units?.apparent_temperature.charAt(0)}
+              </span>
+              <div className="other">
+                <span className="probability-detailed">
+                  <img src="./img/weather/icon-precipitation-probability.png" alt="" />
+                  {responseData.hourly?.precipitation_probability[37]}{responseData.hourly_units?.precipitation_probability}
+                </span>
+                <span className="precipitation">
+                  <img src="./img/weather/icon-precipitation.png" alt="" />
+                  {calcPrecipitation(responseData.hourly?.rain[37]!, responseData.hourly?.snowfall[32]!)} 
+                  <small>&nbsp;{responseData.hourly_units?.rain}</small>
+                </span>
+                <span className="wind-speed">
+                  {windDirectionImage(responseData.hourly?.wind_direction_10m[37]!)}
+                  {responseData.hourly?.wind_speed_10m[37]} <small>&nbsp;{responseData.hourly_units?.wind_speed_10m}</small></span>
+                <span className="relative-humidity">
+                  <img src="./img/weather/icon-humidity.png" alt="" />
+                  {responseData.hourly?.relative_humidity_2m[37]} {responseData.hourly_units?.relative_humidity_2m}
+                </span>
+              </div>
+            </div>
+
+            <div className="period-detailed">
+              <span className='period-name-detailed'>Вечір</span>
+              {cloudCoverImage(responseData.hourly?.cloudcover[42])}
+              <span className='period-t-detailed'>
+                {Math.round(responseData.hourly?.temperature_2m[42]!)}
+                {responseData.hourly_units?.temperature_2m.charAt(0)}
+              </span>
+              <span className='apparent-t-detailed'>
+                Відчувається як
+              </span>
+              <span className="apparent-t-detailed-b">
+                {Math.round(responseData.hourly?.apparent_temperature[42]!)}
+                {responseData.hourly_units?.apparent_temperature.charAt(0)}
+              </span>
+              <div className="other">
+                <span className="probability-detailed">
+                  <img src="./img/weather/icon-precipitation-probability.png" alt="" />
+                  {responseData.hourly?.precipitation_probability[42]}{responseData.hourly_units?.precipitation_probability}
+                </span>
+                <span className="precipitation">
+                  <img src="./img/weather/icon-precipitation.png" alt="" />
+                  {calcPrecipitation(responseData.hourly?.rain[42]!, responseData.hourly?.snowfall[32]!)} 
+                  <small>&nbsp;{responseData.hourly_units?.rain}</small>
+                </span>
+                <span className="wind-speed">
+                  {windDirectionImage(responseData.hourly?.wind_direction_10m[42]!)}
+                  {responseData.hourly?.wind_speed_10m[42]} <small>&nbsp;{responseData.hourly_units?.wind_speed_10m}</small></span>
+                <span className="relative-humidity">
+                  <img src="./img/weather/icon-humidity.png" alt="" />
+                  {responseData.hourly?.relative_humidity_2m[42]} {responseData.hourly_units?.relative_humidity_2m}
+                </span>
+              </div>
+            </div>
+
+            <div className="period-detailed">
+              <span className='period-name-detailed'>Ніч</span>
+              {cloudCoverImage(responseData.hourly?.cloudcover[47])}
+              <span className='period-t-detailed'>
+                {Math.round(responseData.hourly?.temperature_2m[47]!)}
+                {responseData.hourly_units?.temperature_2m.charAt(0)}
+              </span>
+              <span className='apparent-t-detailed'>
+                Відчувається як
+              </span>
+              <span className="apparent-t-detailed-b">
+                {Math.round(responseData.hourly?.apparent_temperature[47]!)}
+                {responseData.hourly_units?.apparent_temperature.charAt(0)}
+              </span>
+              <div className="other">
+                <span className="probability-detailed">
+                  <img src="./img/weather/icon-precipitation-probability.png" alt="" />
+                  {responseData.hourly?.precipitation_probability[47]}{responseData.hourly_units?.precipitation_probability}
+                </span>
+                <span className="precipitation">
+                  <img src="./img/weather/icon-precipitation.png" alt="" />
+                  {calcPrecipitation(responseData.hourly?.rain[47]!, responseData.hourly?.snowfall[32]!)} 
+                  <small>&nbsp;{responseData.hourly_units?.rain}</small>
+                </span>
+                <span className="wind-speed">
+                  {windDirectionImage(responseData.hourly?.wind_direction_10m[47]!)}
+                  {responseData.hourly?.wind_speed_10m[47]} <small>&nbsp;{responseData.hourly_units?.wind_speed_10m}</small></span>
+                <span className="relative-humidity">
+                  <img src="./img/weather/icon-humidity.png" alt="" />
+                  {responseData.hourly?.relative_humidity_2m[47]} {responseData.hourly_units?.relative_humidity_2m}
+                </span>
+              </div>
             </div>
           </div>
         </main>
