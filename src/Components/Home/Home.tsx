@@ -42,33 +42,10 @@ export default function Home() {
                     color: 'white',
                   }}
                   positions={coordinates}
-                  eventHandlers={
-                    {
-                      // mouseover: (e: LeafletMouseEvent) => {
-                      //   const layer = e.target;
-                      //   layer.setStyle({
-                      //     fillOpacity: 0.5,
-                      //     weight: 2,
-                      //     dashArray: '',
-                      //     color: '#666',
-                      //   });
-                      // },
-                      // mouseout: (e: LeafletMouseEvent) => {
-                      //   const layer = e.target;
-                      //   layer.setStyle({
-                      //     fillOpacity: 0.5,
-                      //     weight: 2,
-                      //     dashArray: '',
-                      //     color: 'white',
-                      //   });
-                      // },
-                    }
-                  }
                 />
               );
             })}
           {centers.map((city: any) => {
-            // setSearchValue({ lat: city.lat, lng: city.lng });
             return (
               <Marker
                 key={city.city_ua}
