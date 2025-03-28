@@ -1,0 +1,43 @@
+.not-found {
+    position: fixed;
+    color: #000;
+    font-weight: 600;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.bottom {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+}
+.cloud {
+    width: 150px;
+}
+.text {
+    font-size: 30px;
+}
+.return {
+    display: flex;
+    flex-direction: row;
+    color: #007cef;
+    font-size: 25px;
+    font-weight: 600;
+    text-decoration: none;
+    align-items: center;
+    align-content: center;
+}
+.number {
+    font-size: 56px;
+    margin: 0 30px 0 24px;
+}

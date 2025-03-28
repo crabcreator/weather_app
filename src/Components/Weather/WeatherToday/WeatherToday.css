@@ -1,0 +1,242 @@
+main {
+  display: flex;
+  flex-direction: column;
+}
+.main-info {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 24px auto 0 auto;
+  border-radius: 16px;
+  background: linear-gradient(
+    90deg,
+    rgba(112, 198, 255, 1) 0%,
+    rgba(102, 191, 255, 0.5144258386948529) 100%
+  );
+  color: #fcfbf8;
+  padding: 18px;
+  user-select: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 25%);
+}
+.middle {
+  display: flex;
+  flex-direction: row;
+}
+.top {
+  font-size: 20px;
+  font-weight: 600;
+}
+.left-info-container {
+  display: flex;
+  flex-direction: column;
+}
+.left-info {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  margin: auto 0;
+}
+.today-date {
+  font-size: 14px;
+  font-weight: 500;
+  margin-top: 2px;
+}
+.current-t {
+  display: flex;
+}
+.current-t span {
+  display: flex;
+  font-size: 60px;
+  font-weight: 500;
+  margin-right: 12px;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 25%);
+}
+.current-t img {
+  display: flex;
+  width: 78px;
+  justify-self: center;
+}
+.apparent-t {
+  margin-top: 12px;
+  display: flex;
+  color: #f0f0f0;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.right-info {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+.period {
+  display: flex;
+  flex-direction: column;
+  margin-right: 32px;
+}
+.period:last-child {
+  margin-right: 18px;
+}
+.period-name {
+  display: flex;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  align-self: center;
+}
+.period-t {
+  display: flex;
+  align-self: center;
+  font-weight: 500;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.period img {
+  display: flex;
+  align-self: center;
+  width: 50px;
+  margin-bottom: 8px;
+}
+.apparent-feel {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  align-self: center;
+}
+
+.separate-line {
+  display: flex;
+  justify-self: center;
+  width: 1.6px;
+  height: 50px;
+  background-color: #fafafa;
+  margin: auto 52px;
+}
+
+.bottom {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.detailed-info {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  margin: 24px auto;
+  border-radius: 16px;
+  background: #fff;
+  color: #000;
+  padding: 18px 0 10px 0;
+  user-select: none;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 25%);
+}
+.period-container {
+  display: flex;
+  margin: auto;
+  align-self: center;
+}
+.period-detailed {
+  display: flex;
+  flex-direction: column;
+  margin-right: 16px;
+}
+/* .period-detailed:first-child {
+  margin-left: auto;
+}
+.period-detailed:last-child {
+  margin-right: auto;
+} */
+.period-name-detailed {
+  display: flex;
+  font-size: 16px;
+  color: #707070;
+  font-weight: 600;
+  margin-bottom: 8px;
+  align-self: center;
+}
+.period-detailed > img {
+  display: flex;
+  align-self: center;
+  width: 50px;
+  margin-bottom: 8px;
+}
+.period-t-detailed {
+  display: flex;
+  align-self: center;
+  font-weight: 500;
+  font-size: 34px;
+  margin-bottom: 8px;
+}
+.apparent-t-detailed {
+  display: flex;
+  align-self: center;
+  margin-top: 8px;
+  color: #707070;
+  font-size: 15px;
+  font-weight: 500;
+}
+.apparent-t-detailed-b {
+  display: flex;
+  align-self: center;
+  font-size: 15px;
+  color: #000;
+  font-weight: 600;
+}
+.other {
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  align-items: left;
+}
+.other small {
+  font-size: 13px;
+}
+.probability-detailed {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.probability-detailed img {
+  height: 1rem;
+  margin-right: 2px;
+}
+.precipitation {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.precipitation img {
+  height: 1rem;
+  margin-right: 2px;
+}
+.wind-speed {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.wind-speed img {
+  height: 1rem;
+  margin-right: 2px;
+}
+.relative-humidity {
+  display: flex;
+  font-weight: 500;
+  font-size: 15px;
+  margin-top: 10px;
+}
+.relative-humidity img {
+  height: 1rem;
+  margin-right: 2px;
+}
+
+.other-page {
+  display: flex;
+  color: #007cef !important;
+  font-weight: 600;
+  text-decoration: none;
+  align-self: flex-end;
+  margin: 18px;
+}
