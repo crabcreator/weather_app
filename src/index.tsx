@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import Home from './Components/Home/Home';
 import WeatherToday from './Components/Weather/WeatherToday/WeatherToday';
+import WeatherTomorrow from './Components/Weather/WeatherTomorrow/WeatherTomorrow'
 import { StrictMode } from 'react';
 import NotFound from './Components/NotFound/NotFound';
 
@@ -15,6 +16,7 @@ root.render(
       <Route path='/' element={<App />}>
         <Route index element={<Home />} />
         <Route path='/today' element={<WeatherToday />} />
+        <Route path='/tomorrow' element={<WeatherTomorrow />} />
         <Route path='*' element={<NotFound />}></Route>
       </Route>
     </Routes>

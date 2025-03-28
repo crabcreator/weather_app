@@ -4,7 +4,7 @@ import DateRange from '../../DateRange/DateRange';
 import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { centers } from '../../Home/centers';
-import './WeatherToday.css';
+import './WeatherTomorrow.css';
 import {
   cloudCoverPercent,
   cloudCoverImage,
@@ -72,26 +72,26 @@ export default function WeatherToday() {
     {loading && !notFound && <Loader width='50px' height='50px' borderWidth='7px'/>}
     {!loading && !notFound &&
       <>
-        <DateRange range='0' city={name} />
+        <DateRange range='1' city={name} />
         <main>
           <div className='main-info' ref={infoRef}>
-            <div className='top'>{langName}, погода сьогодні</div>
+            <div className='top'>{langName}, погода на завтра</div>
             <div className='middle'>
               <div className='left-info-container'>
                 <div className='today-date'>
-                  {setDate(responseData.current?.time)}
+                  {setDate(responseData.hourly?.time[48])}
                 </div>
                 <div className='left-info'>
                   <div className='current-t'>
                     <span>
-                      {Math.round(responseData.current?.temperature_2m!)}
+                      {Math.round(responseData.hourly?.temperature_2m[61]!)}
                       {responseData.current_units?.temperature_2m.charAt(0)}
                     </span>
-                    {cloudCoverImage(responseData?.current?.cloudcover)}
+                    {cloudCoverImage(responseData?.hourly?.cloudcover[61])}
                   </div>
                   <div className='apparent-t'>
                     Відчувається як{' '}
-                    {Math.round(responseData.current?.apparent_temperature!)}
+                    {Math.round(responseData.hourly?.apparent_temperature[61]!)}
                     {responseData.current_units?.apparent_temperature.charAt(0)}
                   </div>
                 </div>
